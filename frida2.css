@@ -1,0 +1,118 @@
+html, body {margin: 0; padding: 0; font-family: sans-serif;}
+span.fornavn {background-color: #00afff; padding: 0.2em 1em;}
+span.etternavn {background-color: #69ff00; padding: 0.2em 1em;}
+h1, h2 {font-size: 1em;} h2 {color: gray;}
+div.forfattere {display: block;}
+
+dt {float: left; padding-top: .5em;}
+dd {float: left; margin-left: 2em; font-weight: bold; padding-top: .5em;}
+.fridaid {color: red;} dd + dt {margin-left: 5em;}
+dl {margin-bottom: 2em;}
+p, h2 {clear: left;}
+ol span.fornavn, ol span.etternavn {position: relative;}
+ol li + li {margin-top: 1em;}
+ol span.fornavn:hover:after, ol span.etternavn:hover:after { content: "etternavn"; display: block; color: gray; font-style: italic; position: absolute; top: -1.3em; left: 0; right: 0; margin: auto; font-size: .75em; }
+.clear {clear: left;}
+ol span.fornavn:hover:after {content: "fornavn";}
+.important {color: red; border: 1px solid black; background-color: white; padding: .5em;}
+#datofrida {padding-left: 0;}
+#datofrida strong {font-size: 1.5em;}
+
+#datofrida li {list-style-type: none;}
+#datofrida li span.dato {display: block;}
+
+li {margin: .25em;}
+
+/* selection styles */
+.sel {display:inline-block; background-color: rgb(255,255,128);
+padding: .25em;}
+
+.sel > .sel {padding: 0; border:none; margin: -1px;}
+.sel {position:relative; z-index:1;}
+
+.sel:hover::after {
+  content: "";
+   position: absolute;
+   top:-6px;
+   left: -6px;
+   bottom:-6px;
+   right: -6px;
+   border: 3px solid orange;
+   z-index:-2;
+}
+
+.sel > .sel::after {border:none;}
+.sel > .sel:hover::before {
+  content:"";
+   position:absolute;
+   z-index: -1;
+  left:-3px;
+   right:-3px;
+   top: -9px;
+   bottom:-9px;
+   padding-top: 6px;
+   padding-bottom: 6px;
+   padding-left: 3px;
+   padding-right: 3px;
+   width:100%;
+   height: 100%;
+   border: 3px solid red;}html, body {margin: 0; padding: 0;}
+span.fornavn {background-color: #00afff; padding: 0.2em 1em;}
+span.etternavn {background-color: #69ff00; padding: 0.2em 1em;}
+h1, h2 {font-size: 1em;} h2 {color: gray;}
+div.forfattere {float: left; border: 0px solid black; width: 50%;}
+div.forfattere + div.forfattere {margin-left: 0px;}
+dt {float: left; padding-top: .5em;}
+dd {float: left; margin-left: 2em; font-weight: bold; padding-top: .5em;}
+.fridaid {color: red;} dd + dt {margin-left: 5em;}
+dl {margin-bottom: 2em;}
+p, h2 {clear: left;}
+ol span.fornavn, ol span.etternavn {position: relative;}
+ol li + li {margin-top: 1em;}
+ol span.fornavn:hover:after, ol span.etternavn:hover:after { content: "etternavn"; display: block; color: gray; font-style: italic; position: absolute; top: -1.3em; left: 0; right: 0; margin: auto; font-size: .75em; }
+.clear {clear: left;}
+ol span.fornavn:hover:after {content: "fornavn";}
+.important {color: red; border: 1px solid black; background-color: white; padding: .5em;}
+#datofrida {padding-left: 0;}
+#datofrida strong {font-size: 1.5em;}
+
+#datofrida li {list-style-type: none;}
+#datofrida li span.dato {display: block;}
+
+li {margin: .25em;}
+
+/* selection styles */
+.sel {display:inline-block; background-color: rgb(255,255,128);
+padding: .25em;}
+p.sel {padding: 1em;}
+
+.sel > .sel {padding: 0; border:none; margin: -1px;}
+.sel {position:relative; z-index:1;}
+
+.sel:hover::after {
+  content: "";
+   position: absolute;
+   top:-6px;
+   left: -6px;
+   bottom:-6px;
+   right: -6px;
+   border: 3px solid orange;
+   z-index:-2;
+}
+
+.sel > .sel::after {border:none;}
+.sel > .sel:hover::before {
+  content:"";
+   position:absolute;
+   z-index: -1;
+  left:-3px;
+   right:-3px;
+   top: -9px;
+   bottom:-9px;
+   padding-top: 6px;
+   padding-bottom: 6px;
+   padding-left: 3px;
+   padding-right: 3px;
+   width:100%;
+   height: 100%;
+   border: 3px solid red;}

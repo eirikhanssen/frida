@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record>
+	<header>
+		<identifier>oai:frida.no:1088776</identifier>
+		<datestamp>2014-04-02</datestamp>
+		<setSpec>HIO</setSpec>
+	</header>
+	<metadata>
+		<forskningsresultat>
+			<fellesdata>
+				<id>1088776</id>
+				<eier>
+					<kode>HIO</kode>
+					<navn>Høgskolen i Oslo og Akershus</navn>
+					<navnEngelsk>Oslo and Akershus University College of Applied Sciences</navnEngelsk>
+					<akronym>HIOA</akronym>
+					<datoNSDRapport>2014-04-02</datoNSDRapport>
+				</eier>
+				<registrert>
+					<dato>2014-01-13T13:16:53Z</dato>
+					<person>
+						<id>62748</id>
+						<etternavn>Fønnebø</etternavn>
+						<fornavn>Bente</fornavn>
+					</person>
+					<institusjon>
+						<institusjonsnr>215</institusjonsnr>
+						<navn>Høgskolen i Oslo og Akershus</navn>
+						<navnEngelsk>Oslo and Akershus University College of Applied Sciences</navnEngelsk>
+						<akronym>HIOA</akronym>
+						<land>
+							<kode>NO</kode>
+							<navn>Norge</navn>
+							<navnEngelsk>Norway</navnEngelsk>
+						</land>
+					</institusjon>
+				</registrert>
+				<endret>
+					<dato>2014-04-02T09:13:50Z</dato>
+					<person>
+						<id>60434</id>
+						<etternavn>Wolf</etternavn>
+						<fornavn>Sigrid</fornavn>
+					</person>
+					<institusjon>
+						<institusjonsnr>215</institusjonsnr>
+						<navn>Høgskolen i Oslo og Akershus</navn>
+						<navnEngelsk>Oslo and Akershus University College of Applied Sciences</navnEngelsk>
+						<akronym>HIOA</akronym>
+						<land>
+							<kode>NO</kode>
+							<navn>Norge</navn>
+							<navnEngelsk>Norway</navnEngelsk>
+						</land>
+					</institusjon>
+				</endret>
+				<kategori>
+					<hovedkategori>
+						<kode>TIDSSKRIFTPUBL</kode>
+						<navn>Tidsskriftspublikasjon</navn>
+						<navnEngelsk>Journal publication</navnEngelsk>
+					</hovedkategori>
+					<underkategori>
+						<kode>ARTIKKEL</kode>
+						<navn>Vitenskapelig artikkel</navn>
+						<navnEngelsk>Academic article</navnEngelsk>
+					</underkategori>
+				</kategori>
+				<person>
+					<id>62748</id>
+					<harFodselsnummer>true</harFodselsnummer>
+					<rekkefolgenr>1</rekkefolgenr>
+					<etternavn>Fønnebø</etternavn>
+					<fornavn>Bente</fornavn>
+					<tilhorighet>
+						<sted>
+							<institusjonsnr>215</institusjonsnr>
+							<avdnr>4</avdnr>
+							<undavdnr>2</undavdnr>
+							<gruppenr>2</gruppenr>
+							<navn>Studielederområde 2</navn>
+							<navnEngelsk>Head of Studies - Area of responsibility 2</navnEngelsk>
+							<institusjon>
+								<institusjonsnr>215</institusjonsnr>
+								<navn>Høgskolen i Oslo og Akershus</navn>
+								<navnEngelsk>Oslo and Akershus University College of Applied Sciences</navnEngelsk>
+								<akronym>HIOA</akronym>
+								<land>
+									<kode>NO</kode>
+									<navn>Norge</navn>
+									<navnEngelsk>Norway</navnEngelsk>
+								</land>
+								<sektor>
+									<kode>UH</kode>
+									<navn>Universitet og Høgskoler</navn>
+									<navnEngelsk>Universities and colleges</navnEngelsk>
+								</sektor>
+							</institusjon>
+							<sti>Høgskolen i Oslo og Akershus|Fakultet for lærerutdanning og internasjonale studier|Institutt for barnehagelærerutdanning|Studielederområde 2</sti>
+							<stiEngelsk>Oslo and Akershus University College of Applied Sciences|Faculty of Education and International Studies|Department of Early Childhood Education|Head of Studies - Area of responsibility 2|</stiEngelsk>
+							<rolle>
+								<kode>FORFATTER</kode>
+								<navn>Forfatter</navn>
+								<navnEngelsk>Author</navnEngelsk>
+							</rolle>
+						</sted>
+					</tilhorighet>
+				</person>
+				<person>
+					<id>62923</id>
+					<harFodselsnummer>true</harFodselsnummer>
+					<rekkefolgenr>2</rekkefolgenr>
+					<etternavn>Rolfsen</etternavn>
+					<fornavn>Christian Nordahl</fornavn>
+					<tilhorighet>
+						<sted>
+							<institusjonsnr>215</institusjonsnr>
+							<avdnr>6</avdnr>
+							<undavdnr>2</undavdnr>
+							<gruppenr>0</gruppenr>
+							<navn>Institutt for bygg- og energiteknikk</navn>
+							<navnEngelsk>Department of Civil Engineering and Energy Technology</navnEngelsk>
+							<institusjon>
+								<institusjonsnr>215</institusjonsnr>
+								<navn>Høgskolen i Oslo og Akershus</navn>
+								<navnEngelsk>Oslo and Akershus University College of Applied Sciences</navnEngelsk>
+								<akronym>HIOA</akronym>
+								<land>
+									<kode>NO</kode>
+									<navn>Norge</navn>
+									<navnEngelsk>Norway</navnEngelsk>
+								</land>
+								<sektor>
+									<kode>UH</kode>
+									<navn>Universitet og Høgskoler</navn>
+									<navnEngelsk>Universities and colleges</navnEngelsk>
+								</sektor>
+							</institusjon>
+							<sti>Høgskolen i Oslo og Akershus|Fakultet for teknologi, kunst og design|Institutt for bygg- og energiteknikk</sti>
+							<stiEngelsk>Oslo and Akershus University College of Applied Sciences|Faculty of Technology, Art and Design|Department of Civil Engineering and Energy Technology|</stiEngelsk>
+							<rolle>
+								<kode>FORFATTER</kode>
+								<navn>Forfatter</navn>
+								<navnEngelsk>Author</navnEngelsk>
+							</rolle>
+						</sted>
+					</tilhorighet>
+				</person>
+				<sprak>
+					<kode>NB</kode>
+					<navn>Norsk, bokmål</navn>
+					<navnEngelsk>Norwegian, bokmål</navnEngelsk>
+				</sprak>
+				<tittel>Areal til skapende lek, læring og utforskning i barnehagen</tittel>
+				<ar>2014</ar>
+				<arRapportert>2014</arRapportert>
+				<ressurs>
+					<type>
+						<kode>FULLTEKST</kode>
+						<navn>Fulltekst</navn>
+						<navnEngelsk>Full-text</navnEngelsk>
+					</type>
+					<url>https://journals.hioa.no/index.php/nbf/article/view/742/733</url>
+				</ressurs>
+				<ressurs>
+					<type>
+						<kode>DATA</kode>
+						<navn>Data</navn>
+						<navnEngelsk>Data</navnEngelsk>
+					</type>
+					<url>http://www.nordiskbarnehageforskning.no/</url>
+				</ressurs>
+				<erPublisert>true</erPublisert>
+				<kontrollert>
+					<dato>2014-04-02T09:14:26Z</dato>
+					<person>
+						<id>60434</id>
+						<etternavn>Wolf</etternavn>
+						<fornavn>Sigrid</fornavn>
+						<institusjon>
+							<institusjonsnr>215</institusjonsnr>
+							<navn>Høgskolen i Oslo og Akershus</navn>
+							<navnEngelsk>Oslo and Akershus University College of Applied Sciences</navnEngelsk>
+							<akronym>HIOA</akronym>
+							<land>
+								<kode>NO</kode>
+								<navn>Norge</navn>
+								<navnEngelsk>Norway</navnEngelsk>
+							</land>
+						</institusjon>
+					</person>
+					<godkjent>J</godkjent>
+				</kontrollert>
+				<rapportdata>
+					<ar>2014</ar>
+					<publikasjonsform>
+						<kode>3</kode>
+						<navn>Artikkel i periodika og serier</navn>
+						<navnEngelsk>Article in Periodical and series</navnEngelsk>
+					</publikasjonsform>
+					<publikasjonskanal>
+						<serie>
+							<idItar>1017285</idItar>
+							<navn>Nordisk Barnehageforskning</navn>
+							<issn>1890-9167</issn>
+							<kvalitetsniva>
+								<kode>1</kode>
+								<navn>Kvalitetsnivå 1</navn>
+								<navnEngelsk>Quality level 1</navnEngelsk>
+							</kvalitetsniva>
+						</serie>
+					</publikasjonskanal>
+				</rapportdata>
+				<fulltekst>
+					<nr>1</nr>
+					<type>original</type>
+					<navn>Areal til skapende lek, læring og utforskning i barnehagen-publisert 13.01.2014.pdf</navn>
+					<antallBytes>472312</antallBytes>
+					<dato>2014-04-23</dato>
+					<md5>a165a29d7e51c54700190b40bf2cb79a</md5>
+					<personreferanse>Christian Nordahl Rolfsen, HIOA</personreferanse>
+					<sjekkpunkt>
+						<kode>HIO1</kode>
+						<navn>Jeg har mine medforfatteres samtykke til arkivering av fulltekst.</navn>
+						<navnEngelsk>I have my co-authors consent to submit the document.</navnEngelsk>
+					</sjekkpunkt>
+					<sjekkpunkt>
+						<kode>HIO2</kode>
+						<navn>Jeg samtykker i <a href="http://www.hioa.no/node_43/node_52/lsb/LSB_ODA_lisensavtale_2011-08-11" target="_blank">avtalen</a> om arkivering som gjelder for Høgskolen i Oslo og Akershus</navn>
+						<navnEngelsk>I accept <a href="http://www.hioa.no/node_43/node_52/lsb/LSB_ODA_lisensavtale_2011-08-11" target="_blank">the license agreement</a> for documents for Oslo University College.</navnEngelsk>
+					</sjekkpunkt>
+				</fulltekst>
+				<fulltekst>
+					<nr>2</nr>
+					<type>original</type>
+					<navn>Areal til skapende lek, læring og utforskning i barnehagen-publisert 13.01.201474760.pdf</navn>
+					<antallBytes>472342</antallBytes>
+					<dato>2014-04-23</dato>
+					<md5>fa1ba619669d3900abe527cd9f31bc9f</md5>
+					<personreferanse>Christian Nordahl Rolfsen, HIOA</personreferanse>
+					<sjekkpunkt>
+						<kode>HIO1</kode>
+						<navn>Jeg har mine medforfatteres samtykke til arkivering av fulltekst.</navn>
+						<navnEngelsk>I have my co-authors consent to submit the document.</navnEngelsk>
+					</sjekkpunkt>
+					<sjekkpunkt>
+						<kode>HIO2</kode>
+						<navn>Jeg samtykker i <a href="http://www.hioa.no/node_43/node_52/lsb/LSB_ODA_lisensavtale_2011-08-11" target="_blank">avtalen</a> om arkivering som gjelder for Høgskolen i Oslo og Akershus</navn>
+						<navnEngelsk>I accept <a href="http://www.hioa.no/node_43/node_52/lsb/LSB_ODA_lisensavtale_2011-08-11" target="_blank">the license agreement</a> for documents for Oslo University College.</navnEngelsk>
+					</sjekkpunkt>
+				</fulltekst>
+			</fellesdata>
+			<kategoridata>
+				<tidsskriftsartikkel>
+					<tidsskrift>
+						<id>746153</id>
+						<navn>Nordisk Barnehageforskning</navn>
+						<issn>1890-9167</issn>
+						<kvalitetsniva>
+							<kode>1</kode>
+							<navn>Kvalitetsnivå 1</navn>
+							<navnEngelsk>Quality level 1</navnEngelsk>
+						</kvalitetsniva>
+					</tidsskrift>
+					<arstallOnline>2014</arstallOnline>
+					<arstallTrykket>2014</arstallTrykket>
+					<volum>7</volum>
+					<hefte>1</hefte>
+					<sideangivelse>
+						<antallSider>11</antallSider>
+					</sideangivelse>
+					<artikkelnr>1</artikkelnr>
+				</tidsskriftsartikkel>
+			</kategoridata>
+		</forskningsresultat>
+	</metadata>
+</record>
+
