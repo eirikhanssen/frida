@@ -17,9 +17,11 @@
 (function coda(){
     var pagetitle=document.title;
     var frida_extraction_iframe_url = "https://localhost/~hanson/coda/coda2.html";
-    var frida_extraction_iframe, fridastyles, savebutton, loadbutton, frida_title, frida_ar, frida_authors_all, frida_authors_hioa, frida_id, frida_extract_sec, coda_sec, frida_input, frida_result;
-    console.log("coda_enhancer");
-    //console.log(pagetitle);
+    // elements
+    var frida_extraction_iframe, fridastyles, savebutton, loadbutton, frida_extract_sec, coda_sec, frida_input, frida_result, frida_issn_el;
+    // frida metadata values
+    var frida_title, frida_ar, frida_authors_all, frida_authors_hioa, frida_id, frida_issn;
+    console.log(pagetitle);
     if(pagetitle === "Frida metadata extraction") {
         // check if the user script is running inside frida.html
         console.log("running in frida.html");
@@ -57,14 +59,20 @@
         // check if the user script is running inside coda.hio.no/jspui/submit on the "CODA: Describe this Item" page
         console.log("running inside coda.hio.no/jspui/submit");
         
+        // Add new styles for coda
+        fridastyles = document.createElement("style");
+        fridastyles.innerHTML="#loadbutton:hover, #loadbutton:focus {box-shadow: 0 0 1em cyan;} #loadbutton {font-weight:bold; position:fixed; top: 0; left:40%; margin-left: 1em; margin-top: 1em;padding:1em;}";
+        document.querySelector("head").appendChild(fridastyles);
+        
         loadbutton = document.createElement("button");
         loadbutton.textContent="Load";
         loadbutton.id="loadbutton";
         loadbutton.addEventListener("click",loadValues,false);
         document.body.appendChild(loadbutton);
-        if(GM_getValue("autoloading") === true) {
-            console.log("continuing to load and add author fields");
-            setTimeout(loadValues,1000);
+        if(GM_getValue("autoloading") === true || GM_getValue("setISSN") === true) {
+            console.log("autoloading continues...");
+            loadValues();
+            //setTimeout(loadValues,1000);
         }
     }
     // if the script is not running in either frida.html or in the relevant coda page, nothing will happen
@@ -78,6 +86,7 @@
         frida_ar = document.querySelector("#frida_ar").textContent;
         frida_authors_hioa = document.querySelector("#frida_authors_hioa").textContent;
         frida_authors_all = document.querySelectorAll("#frida_authors_all .author");
+        frida_issn_el = document.querySelector("#frida_issn");
         
         var all_authors = [];
         for(var i = 0; i < frida_authors_all.length; i++) {
@@ -102,18 +111,28 @@
         GM_setValue("frida_authors_number", frida_authors_all.length);
         GM_setValue("frida_author_fields_added", 0);
         GM_setValue("autoloading",false);
+        if(frida_issn_el !== null) {
+            GM_setValue("frida_issn",frida_issn_el.textContent);
+        }
     }
     function loadValues() {
         // loadValues uses GM_getValue() that will allow to retrieve cross site variables in the user script's namespace
+        console.log("loadValues()");
         var current_lastname_input, current_firstname_input;
         var add_more_authors_button = document.querySelector("input[name=submit_dc_contributor_author_add]");
         var frida_authors_number, frida_authors_fields_added;
         frida_authors_number = GM_getValue("frida_authors_number");
-        var total_num_of_author_fields_to_be_added = frida_authors_number - 1;
+        var total_num_of_author_fields_to_be_added = frida_authors_number;
         // if there are not enough author fields, keep adding until there are enough
         frida_authors_fields_added = GM_getValue("frida_author_fields_added");
-
-        if(frida_authors_number > 1 && frida_authors_fields_added <= total_num_of_author_fields_to_be_added) {
+        
+        // see if all is done except adding issn
+        if(GM_getValue("setISSN") === true) {
+            console.log("calling loadISSN on next line...");
+            loadISSN();
+            GM_deleteValue("setISSN");
+        }
+        else if(frida_authors_number > 1 && frida_authors_fields_added <= total_num_of_author_fields_to_be_added) {
             // set auto loading true
             GM_setValue("autoloading",true);
             console.log("need to add " + (total_num_of_author_fields_to_be_added - frida_authors_fields_added) + " of " + total_num_of_author_fields_to_be_added + "author fields");
@@ -152,15 +171,21 @@
             } else if (frida_authors_number > 1) {
                 console.log("adding " + frida_authors_number + " authors");
                 // more than one author, add these authors
-                for(var n = 0; n < all_authors_array.length; n++) {
+                for(var n = 1; n <= all_authors_array.length; n++) {
                     console.log("querySelector input: ");
-                    console.log("#input[name=dc_contributor_author_last_"+ (n+1).toString() +"]");
-                    console.log("#input[name=dc_contributor_author_first_"+ (n+1).toString() +"]");
-                    console.log("dc_contributor_author_last_1")
-                    current_lastname_input = document.querySelector("#input[name=dc_contributor_author_last_"+ (n+1).toString() +"]");
-                    current_firstname_input = document.querySelector("#input[name=dc_contributor_author_first_"+ (n+1).toString() +"]");
-                    current_lastname_input.value = all_authors_array[n].lastname;
-                    current_firstname_input.value = all_authors_array[n].firstname;
+                    console.log("#input[name=dc_contributor_author_last_"+ n +"]");
+                    console.log("#input[name=dc_contributor_author_first_"+ n +"]");
+                    //console.log("dc_contributor_author_last_1")
+                    
+                    console.log("current author:");
+                    console.log(all_authors_array[n-1].lastname);
+                    console.log(all_authors_array[n-1].firstname);
+                    
+                    current_lastname_input = document.querySelector("input[name=dc_contributor_author_last_"+ n +"]");
+                    current_lastname_input.value = all_authors_array[n-1].lastname;
+
+                    current_firstname_input = document.querySelector("input[name=dc_contributor_author_first_"+ n +"]");
+                    current_firstname_input.value = all_authors_array[n-1].firstname;
                 }
             }
             
@@ -172,6 +197,7 @@
             // set year
             var year_input = document.querySelector("input[name=dc_date_issued_year]");
             year_input.value = GM_getValue("frida_ar");
+
             // set fridaid
             var dc_identifier_qualifier_select = document.querySelector("select[name=dc_identifier_qualifier]");
             var dc_identifier_value_input = document.querySelector("input[name=dc_identifier_value]");
@@ -186,36 +212,34 @@
             // then set the fridaid in the input
             dc_identifier_value_input.value = GM_getValue("frida_id");
 
-            // the hard part: adding authors and clicking the add more button as needed
-            // first re-make array with author objects using JSON.parse
-            // it gets harder because the page reloads!
-            //
-            // OK; det første som må gjøres er å legge til rett antall forfatter-felt
-            // da må man lagre en verdi med GM_save ... forfatterfelt_nr og forfatterfelt_totalt. for hver gang siden lastes (etter å ha trykket på add more)
-            // først sjekk på om forfatterfelt_nr er like stor som forfattere_totalt, så telle den opp med en
-            // så fylle inn dette tallet i feltet, og trykke på knappen en gang til
-            // når alle er lagt til, må disse variablene slettes, eller må de?
-            // da legges alle forfatterne til, og etterpå det enkle.
-            // gjør en sjekk når siden lastes for om flere skal legges til
-
-            /*
-            var author_num=5;
-            if(author_num>1) {
-                for(var k=1;k<=author_num;k++){
-                    fillAuthor({firstname:"ole",lastname:"brum"},k));
-                }
-            }*/
-
-            // then determine how many authors there are
-            // then keep adding more rows as needed, filling in just a number to be able to add more rows.
-            // when all the rows have been added, fill them in with the authors from the author object array.
-
+            // now insert issn if present!
+            // click the button to add more entries
+            // page loads
             //console.log("loading values...");
             //console.log(GM_getValue("frida_title") + GM_getValue("frida_id") + GM_getValue("frida_ar") + GM_getValue("frida_authors_hioa") + GM_getValue("frida_authors_all_json"));
             
+            prepareISSN();
             // clear the GM_values!
-            clear_GM_values();
         }
+    }
+    
+    function prepareISSN(){
+        console.log("preparing ISSN insertion");
+        // first check if it has to run
+        // if input[name=dc_identifier_value_2] exists, it does not have to do any work
+        var issn_input = document.querySelector("input[name=dc_identifier_value_2]");
+        if (issn_input === null) {
+            // add another identifier input (and the page will reload)
+            var add_button = document.querySelector("input[name=submit_dc_identifier_add");
+            GM_setValue("setISSN", true);
+            add_button.click();
+        }
+    }
+    
+    function loadISSN(){
+        console.log("loading ISSN");
+        var issn_input = document.querySelector("input[name=dc_identifier_value_2]");
+        issn_input.value=GM_getValue("frida_issn");
     }
     function clear_GM_values(){
         console.log("done, clearing out all GM values!");
@@ -227,6 +251,7 @@
         GM_deleteValue("frida_authors_number");
         GM_deleteValue("frida_author_fields_added");
         GM_deleteValue("autoloading");
+        GM_deleteValue("setISSN");
     }
     function fillAuthor(author,num) {
         console.log("fillAuthor: " + num.toString());
@@ -238,4 +263,5 @@
     function activateSaveButton(){
         savebutton.disabled=false;
     }
+    
 }());
