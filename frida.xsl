@@ -46,12 +46,15 @@
       </h2>
         <h2>Alle forfattere</h2>
           <ol id="frida_authors_all">
-            <xsl:for-each select="//rolle[kode='FORFATTER']">
-              <li class="author">
-                <span class="lastname sel"><xsl:value-of select="../../../etternavn"/></span><span><xsl:text> </xsl:text></span>
-                <span class="firstname sel"><xsl:value-of select="../../../fornavn"/></span>
-              </li>
-            </xsl:for-each>
+		<xsl:variable name="all_authors_with_doubles">
+			<xsl:sequence select="//person[descendant::rolle/kode = 'FORFATTER']"></xsl:sequence>
+		</xsl:variable>
+		<xsl:for-each select="$all_authors_with_doubles/person">
+			<li class="author">
+				<span class="lastname sel"><xsl:value-of select="etternavn"/></span><xsl:text> </xsl:text>
+				<span class="firstname sel"><xsl:value-of select="fornavn"/></span>
+			</li>
+		</xsl:for-each>
           </ol>
 
           <xsl:variable name="hioa_authors_seq">
