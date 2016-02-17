@@ -1,0 +1,160 @@
+html, body {
+    font-family: sans-serif;
+    background-color: white;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+body:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+section#frida_extract, section#coda_section {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+section#frida_extract {
+    left: 0;
+    width: 40%;
+    z-index: 2;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
+}
+section#coda_section {
+	position:absolute;
+    right:0;
+    width: 60%;
+    margin-left: 1.75em;
+    overflow:hidden;
+    z-index:1;
+}
+section#coda_section iframe {
+    position: absolute;
+    right:0;
+    display:block;
+    width:100%;
+    min-height: 100%;
+    overflow-y: scroll;
+}
+section#frida_extract::after {
+    content: "";
+    position: absolute;
+    width: .5em;
+    background-color: red;
+    right:.25em;
+    top: -1em;
+    bottom: -1em;
+    border-left: .5em solid #eee;
+    border-right: .5em solid #eee;
+    box-shadow: 0 0 1em #444;
+    z-index: 4;
+}
+#transformbutton,
+#xml_area_label,
+#xml_area_label span,
+#xml_area textarea {
+    display: inline-block;
+    float: left;
+}
+#transformbutton, #savebutton, #clearbutton {
+    line-height: 2.25em;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+#xml_area_label span {
+    font-weight: bold;
+    line-height: 2.25em;
+    padding: 0 .5em;
+}
+
+#xml_area:focus,
+#xml_area:hover {
+    border: 1px solid blue;
+    box-shadow: 0 0 .75em magenta;
+}
+#frida_input {
+    box-sizing:border-box;
+    border-radius: .25em;
+    background-color: #eee;
+    margin-top: .5em;
+    margin-left: 0;
+    margin-right: 1.25em;
+}
+#frida_input::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+#frida_id {
+    color: red;
+}
+#frida_ar::before {
+    content: "År: ";
+}
+h1, h2 {
+    margin-bottom: 0;
+}
+button:hover, button:focus {
+    box-shadow: 0 0 .75em magenta;
+}
+h2+ol, h2+p {
+    margin-top: .5em;
+}
+li {
+    margin: .45em 0;
+}
+.lastname, .firstname {
+    margin: 0 .25em;
+}
+span.lastname {
+    background-color: rgb(128,255,128);
+}
+/* selection styles */
+.sel {
+    display: inline-block;
+    background-color: rgb(255,255,128);
+    padding: .25em;
+}
+.sel > .sel {
+    padding: 0;
+    border: none;
+    margin: -1px;
+}
+.sel {
+    position: relative;
+    z-index: 1;
+}
+
+.sel:hover::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    bottom: -6px;
+    right: -6px;
+    border: 3px solid orange;
+    z-index: -2;
+}
+
+.sel > .sel::after {
+    border: none;
+}
+.sel > .sel:hover::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -3px;
+    right: -3px;
+    top: -9px;
+    bottom: -9px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid red;
+}

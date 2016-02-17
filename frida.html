@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Frida metadata extraction</title>
+	<link rel="stylesheet" type="text/css" href="frida.css">
+	<script type="text/javascript" src="Saxonce/Saxonce.nocache.js"></script>
+
+</head>
+
+<body>
+	<fieldset id="frida_input">
+	<label id="xml_area_label" for="xml_area"><span>Meta here:</span>
+		<textarea id="xml_area"></textarea>
+	</label>
+	<button id="transformbutton">Extract</button>
+	</fieldset>
+	<div id="frida_result"></div>
+	
+	<script>
+		window.addEventListener("load", init, false);
+		var xml_area, xsl_area, transformbutton, resultdiv, xsldoc, xmlstring, resultdiv;
+
+		function init() {
+			xml_area = document.querySelector("#xml_area");
+			xsl_area = document.querySelector("#xsl_area");
+			transformbutton = document.querySelector("#transformbutton");
+			transformbutton.addEventListener("click", transform, false);
+			resultdiv = document.querySelector("#frida_result");
+		}
+
+		function transform() {
+				xmlstring = xml_area.value;
+				//xslstring = xsl_area.value;
+				xsldoc = "frida.xsl"
+					//console.log("xml: " + xmlstring);
+					//console.log("xsl: " + xslstring);
+					//var xslt = Saxon.parseXML(xslstring);
+				var xslt = Saxon.requestXML(xsldoc);
+				var xsltProc = Saxon.newXSLT20Processor(xslt);
+				var input = Saxon.parseXML(xmlstring);
+				var result = xsltProc.transformToDocument(input);
+				var resultString = Saxon.serializeXML(result);
+				//console.log(resultString);
+				resultdiv.innerHTML = resultString;
+				// after the result has been added to the dom, make 
+				// the relevant elements one-click-selectable
+				makeTextOneClickSelectable();
+			}
+			// legge til js kode for å velge tekst med ett klikk.
+			// ved greasemonkey/tapermonkey script, sette inn coda.hio.no/jspui som en iframe i denne siden
+			// lage en section med id extract og en med id coda
+			// legge til denne siden i extract og coda.hio.no/jspui i coda
+	</script>
+	<script type="text/javascript" src="makeTextOneClickSelectable.js"></script>
+</body>
+</html>

@@ -1,69 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-   <xsl:output method="html" indent="yes"/>
-   <xsl:template match="/">
-      <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;
-</xsl:text>
-      <html>
-         <head>
-            <title>
-               <xsl:value-of select="//tittel"/>
-            </title>
-            <link rel="stylesheet" href="frida2.css"/>
-            <script src="frida2.js"></script>
-         </head>
-         <body>
-            <!--<button onclick="initWrapper()">Make Selectable!</button>-->
-            <h1 class="sel"><xsl:value-of select="//tittel"/></h1>
-            <ul id="datofrida">
-               <li><xsl:apply-templates select="//ar"/></li>
-               <li><xsl:apply-templates select="//arstallOnline"/></li>
-               <li><strong class="sel">FRIDAID <span class="fridaid sel"><xsl:value-of select="//fellesdata/id"/></span></strong></li>
-            </ul>
-            <div class="clear"/>
-            <div class="forfattere">
-               <h2>Alle forfattere:</h2>
-               <ol>
-                  <xsl:for-each select="//rolle[kode='FORFATTER']">
-                     <li>
-                        <span class="etternavn sel">
-                           <xsl:value-of select="../../../etternavn"/>
-                        </span>
-                        <xsl:text> </xsl:text>
-                        <span class="fornavn sel">
-                           <xsl:value-of select="../../../fornavn"/>
-                        </span>
-                     </li>
-                  </xsl:for-each>
-               </ol>
-            </div>
-            <div class="forfattere">
-               <h2>HiOA-forfattere:</h2>
-               <p class="sel">
-                  <xsl:for-each select="//rolle[kode='FORFATTER']">
-                     <xsl:if test="../institusjon/akronym = 'HIOA'">
-                        <span class="fornavn">
-                           <xsl:value-of select="../../../fornavn"/>
-                        </span>
-                        <xsl:text> </xsl:text>
-                        <span class="etternavn">
-                           <xsl:value-of select="../../../etternavn"/>
-                        </span>
-                        <xsl:if test="position() != last()">,<xsl:text> </xsl:text></xsl:if>
-                     </xsl:if>
-                  </xsl:for-each>
-               </p>
-            </div>
-         </body>
-      </html>
-   </xsl:template>
-   
-   <xsl:template match="//arstallOnline">
-<span class="dato">(...)/<xsl:value-of select="name(../../..)"/>/<xsl:value-of select="name(../..)"/>/<xsl:value-of select="name(..)"/>/arstallOnline: <strong class="important sel"><xsl:value-of select="."/></strong></span>
-   </xsl:template>
-   
-      <xsl:template match="//ar">
-<span class="dato">(...)/<xsl:value-of select="name(../../..)"/>/<xsl:value-of select="name(../..)"/>/<xsl:value-of select="name(..)"/>/ar: <strong class="sel"><xsl:value-of select="."/></strong></span>
-   </xsl:template>
+<xsl:transform
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:prop="http://saxonica.com/ns/html-property"
+  xmlns:style="http://saxonica.com/ns/html-style-property"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"  
+  xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT"
+  xmlns:js="http://saxonica.com/ns/globalJS"
+  
+  exclude-result-prefixes="xs prop style xs js"
+  extension-element-prefixes="ixsl"
+  version="2.0">
+  
+  <xsl:output omit-xml-declaration="yes" method="html"></xsl:output>
 
-</xsl:stylesheet>
+  <xsl:template match="/">
+    <section id="frida_metadata">
+        <h1 id="frida_title" class="sel"><xsl:value-of select="//tittel"/></h1>
+        <h2 class="fridaid">
+          <span class="sel">FRIDAID 
+            <span id="frida_id" class="sel"><xsl:value-of select="//fellesdata/id"/></span></span>
+          </h2>
+
+      <h2 id="frida_ar">
+          <xsl:variable name="aarstall">
+            <xsl:for-each select="//ar|//arstallOnline"><ar><xsl:value-of select="."/></ar></xsl:for-each>
+          </xsl:variable>
+      	<span class="sel"><xsl:value-of select="min($aarstall/ar)"/></span>
+        </h2>
+      <h2>
+        <xsl:variable name="issns">
+          <xsl:sequence select="//issn"/>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="every $n in $issns/issn satisfies $n eq $issns/issn[1]">
+			<xsl:text>ISSN: </xsl:text><span id="frida_issn" class="sel"><xsl:value-of select="$issns/issn[1]"/></span>
+		</xsl:when>
+		<xsl:otherwise>
+			<strong><xsl:text>Different ISSN present: </xsl:text></strong>
+			<xsl:for-each select="$issns/issn">
+				<span class="sel"><xsl:value-of select="."/></span>
+				<xsl:if test="position() ne last()"><xsl:text>, </xsl:text></xsl:if>
+			</xsl:for-each>
+		</xsl:otherwise>
+        </xsl:choose>
+
+      </h2>
+        <h2>Alle forfattere</h2>
+          <ol id="frida_authors_all">
+            <xsl:for-each select="//rolle[kode='FORFATTER']">
+              <li class="author">
+                <span class="lastname sel"><xsl:value-of select="../../../etternavn"/></span><span><xsl:text> </xsl:text></span>
+                <span class="firstname sel"><xsl:value-of select="../../../fornavn"/></span>
+              </li>
+            </xsl:for-each>
+          </ol>
+
+          <xsl:variable name="hioa_authors_seq">
+            <xsl:for-each select="//rolle[kode='FORFATTER']">
+              <xsl:if test="../institusjon/akronym = 'HIOA'">
+                <author><xsl:value-of select="../../../fornavn"/><xsl:text> </xsl:text><xsl:value-of select="../../../etternavn"/></author>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+
+        <xsl:variable name="hioa_authors">
+          <xsl:for-each select="$hioa_authors_seq/author">
+            <xsl:value-of select="."/><xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
+          </xsl:for-each>
+        </xsl:variable>
+
+      <h2>HiOA-forfattere</h2>
+      <p id="frida_authors_hioa" class="sel"><xsl:value-of select="$hioa_authors"/></p>
+    </section>
+  </xsl:template>
+</xsl:transform>

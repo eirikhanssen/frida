@@ -1,0 +1,90 @@
+/* Name: [[ CODA ]]
+box-shadow for å lettere se hvor jeg skal fylle ut:
+	- Authors (Last name) (First names) add-more-button
+	- title
+	- Date of Issue (year)
+	- identifier (other), her skal det stå FRIDAID (mellomrom) artikkelID
+	- [Start a New Submission] input type="submit" name="submit_new" value="Start a New Submission"
+Flytte knapper opp:
+	- [I Grant the License]
+	- [<Previous]
+	- [Next>]
+	- [Cancel/Save]
+*/
+
+input[name='submit_new'], input[name='submit_grant'], input[name='submit_cancel'], input[name='submit_prev'], input[name='submit_next'], input[name='submit_upload'], input[value="Submit another item to the same collection"] {
+	position: fixed;
+	top: 1em;
+	margin: auto;
+	padding: 1.5em;
+	font-weight: bold;
+}
+
+input[value="Submit another item to the same collection"], input[name='submit_new'] {
+	box-shadow: 0px 0px .5em #00f, 0 0 1em white;
+	right: 1em;
+	left: auto;
+}
+
+input[name='submit_grant'] {
+	box-shadow: 0px 0px 10px #0f0;
+	right: 0;
+	left: 0;
+}
+
+input[name='submit_cancel'] {
+	box-shadow: 0px 0px 10px #f00;
+	right: 0;
+	left: 0;
+}
+
+input[name='submit_skip'], input[name^='submit_remove'], input[name^="submit_dc_contributor_author_remove"] {
+	box-shadow: 0px 0px 10px #f00;
+}
+
+input[name='submit_prev'] {
+	box-shadow: 0px 0px 10px #00f;
+	left: 1em;
+}
+
+input[name='submit_next'], input[name='submit_upload'] {
+	box-shadow: 0px 0px 10px #0f0;
+	right: 1em;
+}
+
+input[name^="dc_contributor_author_last"], input[name^="dc_contributor_author_first"], input[name="dc_title"], input[name="dc_date_issued_year"], input[name^="dc_identifier_value"], input[name="submit_dc_contributor_author_add"] {
+	box-shadow: 0px 0px 10px #0f0;
+}
+
+input[name^="submit_jump"] {
+	box-shadow: 0px 0px 10px orange;
+}
+
+select#tcollection option[value='57'], select[name="dc_identifier_qualifier"] option[value="other"] {
+	position: relative;
+	font-weight: bold;
+	background-color: yellow;
+	box-shadow: 0px 0px 5px #0f0;
+	}
+
+input[name="submit_remove"]{
+	box-shadow: 0px 0px 10px #f00;
+}
+
+input[name="submit_back"]{
+	box-shadow: 0px 0px 10px #0f0;
+}
+
+input[name="submit_keep"], input[name="submit_more"], input#tfile[name="file"]{
+	box-shadow: 0px 0px 10px orange;
+	padding: 1.5em;
+}
+
+input[name="submit_open"] {
+	box-shadow: 0px 0px 20px orange;
+	padding: 1.5em;
+
+}
+
+
+.submitProgressTable input {box-shadow: none;}

@@ -1,10 +1,13 @@
-window.addEventListener("load",initWrapper,false);
+//window.addEventListener("load",makeTextOneClickSelectable,false);
 
-function initWrapper(){
+function makeTextOneClickSelectable(){
+   // clicking any element with the class "sel" will make all text content within be the active selection
+   // since the metadata hasn't been transformed/extracted
+   // on page load, this function needs to be run after the transformation
    var selectable_elements;
 
    function init() {
-      console.log("init");
+      console.log("makeTextOneClickSelectable init");
       selectable_elements = document.querySelectorAll(".sel");
       for(var i = 0; i<selectable_elements.length; i++) {
          selectable_elements[i].addEventListener("click", selectText, false);
